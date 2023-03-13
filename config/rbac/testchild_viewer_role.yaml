@@ -1,0 +1,27 @@
+# permissions for end users to view testchildren.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: testchild-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: second-operator
+    app.kubernetes.io/part-of: second-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: testchild-viewer-role
+rules:
+- apiGroups:
+  - testing.second-operator.com
+  resources:
+  - testchildren
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - testing.second-operator.com
+  resources:
+  - testchildren/status
+  verbs:
+  - get

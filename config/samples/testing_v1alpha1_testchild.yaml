@@ -1,0 +1,12 @@
+apiVersion: testing.second-operator.com/v1alpha1
+kind: TestChild
+metadata:
+  labels:
+    app.kubernetes.io/name: testchild
+    app.kubernetes.io/instance: testchild-sample
+    app.kubernetes.io/part-of: second-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: second-operator
+  name: testchild-sample
+spec:
+  # TODO(user): Add fields here
