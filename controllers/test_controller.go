@@ -50,6 +50,10 @@ func (r *TestReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.
 	_ = log.FromContext(ctx)
 
 	// TODO(user): your logic here
+	test := &testingv1alpha1.Test{}
+	if err := r.Get(ctx, req.NamespacedName, test); err != nil {
+		return ctrl.Result{}, err
+	}
 
 	return ctrl.Result{}, nil
 }
@@ -58,5 +62,6 @@ func (r *TestReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.
 func (r *TestReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&testingv1alpha1.Test{}).
+		Owns(&testingv1alpha1.TestChild{}).
 		Complete(r)
 }
